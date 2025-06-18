@@ -6,20 +6,21 @@
 # THIS FILE IS AUTO-GENERATED. DO NOT EDIT BY HAND.
 #
 # Use the following command to update version information:
-# % python3 ./tools/bazel/version_updater.py --version=<version> [--url=<url>]
+# % python3 ./tools/bazel/version_updater.py --version=<version> [--channel=<channel>] [--url=<url>]
 #
 # Specify a fully-qualified CEF version. Optionally override the default
 # download URL.
 #
 # CEF binary distribution file names are expected to take the form
-# "cef_binary_<version>_<platform>.tar.bz2". These files must exist for each
-# supported platform at the download URL location. Sha256 hashes must also
-# exist for each file at "<file_name>.sha256".
+# "cef_binary_<version>_<platform>[_<channel>].tar.bz2". These files must
+# exist for each supported platform at the download URL location. Sha256
+# hashes must also exist for each file at "<file_name>.sha256".
 #
 
 CEF_DOWNLOAD_URL = "https://cef-builds.spotifycdn.com/"
 
 CEF_VERSION = "135.0.17+gcbc1c5b+chromium-135.0.7049.52"
+CEF_CHANNEL = ""
 
 # Map of supported platform to sha256 for binary distribution download.
 CEF_FILE_SHA256 = {
