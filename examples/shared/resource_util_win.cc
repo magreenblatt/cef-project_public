@@ -12,9 +12,20 @@ namespace shared {
 
 namespace {
 
+// Returns the module handle that contains this code. When built as a DLL this
+// will be the DLL handle instead of the EXE handle.
+HINSTANCE GetCodeModuleHandle() {
+  HMODULE hModule = nullptr;
+  CHECK(::GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                                GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                            reinterpret_cast<LPCWSTR>(GetCodeModuleHandle),
+                            &hModule));
+  return hModule;
+}
+
 // Retrieve the contents of a BINARY resource from the current executable.
 bool LoadBinaryResource(int binaryId, DWORD& dwSize, LPBYTE& pBytes) {
-  HINSTANCE hInst = GetModuleHandle(nullptr);
+  HINSTANCE hInst = GetCodeModuleHandle();
   HRSRC hRes =
       FindResource(hInst, MAKEINTRESOURCE(binaryId), MAKEINTRESOURCE(256));
   if (hRes) {

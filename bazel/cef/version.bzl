@@ -19,17 +19,17 @@
 
 CEF_DOWNLOAD_URL = "https://cef-builds.spotifycdn.com/"
 
-CEF_VERSION = "135.0.17+gcbc1c5b+chromium-135.0.7049.52"
-CEF_CHANNEL = ""
+CEF_VERSION = "138.0.9+gc1b40c4+chromium-138.0.7204.23"
+CEF_CHANNEL = "_beta"
 
 # Map of supported platform to sha256 for binary distribution download.
 CEF_FILE_SHA256 = {
-    "windows32": "5c9ab6e4771ee418608a357d3e57e88d9e1fa81bcf3a56190639aa8ce3ae8bc3",
-    "windows64": "b12ffd2a058168fb5de29811d51c758f45164ceaac3528ffe47556375df4a923",
-    "windowsarm64": "88e8fc6a75330188a16378443993e157dd00b87429288ad15c870da4ecf12a81",
-    "macosx64": "a16cb65c3bb21e1935cffd7ac1b4d284f8490efc4b2c04d7c6542e2cad7db47e",
-    "macosarm64": "5d12c3df2ae07deaee68fe49c3798fe87fa67acdd532ae1dbd8542d5e2ec3855",
-    "linux64": "e4aa795be29ba362fdacb4967cf4db3f7e7986e08afb4d17f8cda66ab62f2ee3",
-    "linuxarm64": "644754a52c48ec2cf797639aa6ffc87960ef8480998101b43a0530921c36d2ce",
-    "linuxarm": "5ff3f57666a53dba0c468e1b0464eb1dacd5d79904820ecdb3c2f8f94d08da58",
+    "windows32": "206f2dae70d344fd33708bcb0f6e8a6d17f10b45c39ec6bab22e0f9f30a06edf",
+    "windows64": "a04923804fd410ce02c2c83772772974603499621033aeefe14eeee96982e6d9",
+    "windowsarm64": "5a9f1583e12d8b2bf4ba38ac3fbd65eb369a44e44269e0e7e654649ad3114716",
+    "macosx64": "2ec9301c298f51bf0a1a7f5869ccc3ded9006fcb660e18f714452b46fb07b295",
+    "macosarm64": "b9d1907309f81e7258c9c3bb31008f723b9941de623bdb4474d1fcf39cdeceb0",
+    "linux64": "f9830ad189e6de872fc80e0c70702d7c0eb40e89d60dc28a2b6d8d4ae9f49f1c",
+    "linuxarm64": "d2d630eaee7f70391d66b88437e3318fcc6c2ffb117683d2bf05a7ffcde37514",
+    "linuxarm": "0db47b65bf5b844b09a9a58b0845e6023f42546c27323e5035d877b52c4ac32f",
 }

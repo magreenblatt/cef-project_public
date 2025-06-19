@@ -107,11 +107,6 @@ if(OS_MAC)
   set(EXECUTABLE_NAME "${EXAMPLE_TARGET}")
   set(PRODUCT_NAME "${EXAMPLE_TARGET}")
 
-  if(USE_SANDBOX)
-    # Logical target used to link the cef_sandbox library.
-    ADD_LOGICAL_TARGET("cef_sandbox_lib" "${CEF_SANDBOX_LIB_DEBUG}" "${CEF_SANDBOX_LIB_RELEASE}")
-  endif()
-
   # Main app bundle target.
   add_executable(${EXAMPLE_TARGET} MACOSX_BUNDLE ${EXAMPLE_SRCS} ${EXAMPLE_RESOURCES_SRCS})
   SET_EXAMPLE_EXECUTABLE_TARGET_PROPERTIES(${EXAMPLE_TARGET})
@@ -165,10 +160,6 @@ if(OS_MAC)
       OUTPUT_NAME ${_helper_output_name}
       )
 
-    if(USE_SANDBOX)
-      target_link_libraries(${_helper_target} cef_sandbox_lib)
-    endif()
-
     # Add the Helper as a dependency of the main executable target.
     add_dependencies(${EXAMPLE_TARGET} "${_helper_target}")
 
@@ -208,9 +199,25 @@ if(OS_WINDOWS)
   # Create source groups for Visual Studio.
   SET_EXAMPLE_SOURCE_GROUPS("${EXAMPLE_SRCS}")
 
-  # Executable target.
-  add_executable(${EXAMPLE_TARGET} WIN32 ${EXAMPLE_SRCS})
-  SET_EXAMPLE_EXECUTABLE_TARGET_PROPERTIES(${EXAMPLE_TARGET})
+  if(USE_SANDBOX)
+    # Shared library (DLL) target.
+    add_library(${EXAMPLE_TARGET} SHARED ${EXAMPLE_SRCS})
+    SET_EXAMPLE_LIBRARY_TARGET_PROPERTIES(${EXAMPLE_TARGET})
+
+    # Copy and rename the bootstrap binary.
+    COPY_SINGLE_FILE(${EXAMPLE_TARGET} ${CEF_BINARY_DIR}/bootstrap.exe ${EXAMPLE_TARGET_OUT_DIR}/${EXAMPLE_TARGET}.exe)
+    if (CMAKE_GENERATOR MATCHES "Visual Studio")
+      # Make the bootstrap binary the default command for the Visual Studio debugger.
+      set_target_properties(${EXAMPLE_TARGET} PROPERTIES
+        VS_DEBUGGER_COMMAND "$<TARGET_FILE_DIR:${EXAMPLE_TARGET}>/${EXAMPLE_TARGET}.exe"
+      )
+    endif()
+  else()
+    # Executable target (sandbox disabled).
+    add_executable(${EXAMPLE_TARGET} WIN32 ${EXAMPLE_SRCS})
+    SET_EXAMPLE_EXECUTABLE_TARGET_PROPERTIES(${EXAMPLE_TARGET})
+  endif()
+
   add_dependencies(${EXAMPLE_TARGET} shared)
   target_link_libraries(${EXAMPLE_TARGET} shared)
 endif()
