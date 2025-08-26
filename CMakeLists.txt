@@ -22,7 +22,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 #
 
 # Specify the CEF distribution version.
-set(CEF_VERSION "138.0.17+gac9b751+chromium-138.0.7204.97")
+set(CEF_VERSION "139.0.28+g55ab8a8+chromium-139.0.7258.139")
 set(CEF_CHANNEL "")
 
 # Determine the platform.

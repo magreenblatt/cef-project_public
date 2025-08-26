@@ -103,15 +103,8 @@ if(OS_MAC)
     MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/${SHARED_INFO_PLIST}"
     )
 
-  # Copy the CEF framework into the Frameworks directory.
-  add_custom_command(
-    TARGET ${EXAMPLE_TARGET}
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CEF_BINARY_DIR}/Chromium Embedded Framework.framework"
-            "${EXAMPLE_APP}/Contents/Frameworks/Chromium Embedded Framework.framework"
-    VERBATIM
-    )
+  # Copy the CEF framework into the Frameworks directory and create the necessary symlinks.
+  COPY_MAC_FRAMEWORK("${EXAMPLE_TARGET}" "${CEF_BINARY_DIR}" "${EXAMPLE_APP}")
 
   # Create the multiple Helper app bundle targets.
   foreach(_suffix_list ${CEF_HELPER_APP_SUFFIXES})
