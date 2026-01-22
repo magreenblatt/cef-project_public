@@ -15,6 +15,8 @@ class Client : public CefClient,
                public CefLifeSpanHandler {
  public:
   Client();
+  Client(const Client&) = delete;
+  Client& operator=(const Client&) = delete;
 
   // CefClient methods:
   CefRefPtr<CefDisplayHandler> GetDisplayHandler() override { return this; }
@@ -31,7 +33,6 @@ class Client : public CefClient,
 
  private:
   IMPLEMENT_REFCOUNTING(Client);
-  DISALLOW_COPY_AND_ASSIGN(Client);
 };
 
 }  // namespace minimal

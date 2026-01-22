@@ -10,14 +10,16 @@ namespace minimal {
 
 namespace {
 
-const char kStartupURL[] = "https://www.google.com";
+constexpr char kStartupURL[] = "https://www.google.com";
 
 }  // namespace
 
 // Minimal implementation of CefApp for the browser process.
 class BrowserApp : public CefApp, public CefBrowserProcessHandler {
  public:
-  BrowserApp() {}
+  BrowserApp() = default;
+  BrowserApp(const BrowserApp&) = delete;
+  BrowserApp& operator=(const BrowserApp&) = delete;
 
   // CefApp methods:
   CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler() override {
@@ -45,7 +47,6 @@ class BrowserApp : public CefApp, public CefBrowserProcessHandler {
 
  private:
   IMPLEMENT_REFCOUNTING(BrowserApp);
-  DISALLOW_COPY_AND_ASSIGN(BrowserApp);
 };
 
 }  // namespace minimal

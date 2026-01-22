@@ -8,7 +8,6 @@
 
 # Sources common to main and subprocess executables.
 set(EXAMPLE_COMMON_SRCS
-  scheme_strings.cc
   scheme_strings.h
   )
 

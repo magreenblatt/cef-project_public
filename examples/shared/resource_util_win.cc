@@ -49,6 +49,8 @@ class BinaryResourceProvider : public CefResourceManager::Provider {
       : root_url_(root_url) {
     DCHECK(!root_url.empty());
   }
+  BinaryResourceProvider(const BinaryResourceProvider&) = delete;
+  BinaryResourceProvider& operator=(const BinaryResourceProvider&) = delete;
 
   bool OnRequest(scoped_refptr<CefResourceManager::Request> request) override {
     CEF_REQUIRE_IO_THREAD();
@@ -77,19 +79,16 @@ class BinaryResourceProvider : public CefResourceManager::Provider {
 
  private:
   std::string root_url_;
-
-  DISALLOW_COPY_AND_ASSIGN(BinaryResourceProvider);
 };
 
 }  // namespace
 
 CefResourceManager::Provider* CreateBinaryResourceProvider(
-    const std::string& url_path) {
-  return new BinaryResourceProvider(url_path);
+    std::string_view url_path) {
+  return new BinaryResourceProvider(std::string(url_path));
 }
 
-bool GetResourceString(const std::string& resource_path,
-                       std::string& out_data) {
+bool GetResourceString(std::string_view resource_path, std::string& out_data) {
   int resource_id = GetResourceId(resource_path);
   if (resource_id == 0)
     return false;
@@ -106,7 +105,7 @@ bool GetResourceString(const std::string& resource_path,
   return false;
 }
 
-CefRefPtr<CefStreamReader> GetResourceReader(const std::string& resource_path) {
+CefRefPtr<CefStreamReader> GetResourceReader(std::string_view resource_path) {
   int resource_id = GetResourceId(resource_path);
   if (resource_id == 0)
     return nullptr;
