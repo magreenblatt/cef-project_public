@@ -16,8 +16,9 @@ if(OS_MAC)
     )
 
   # Info.plist files used for main and helper app bundles.
-  set(SHARED_INFO_PLIST ../shared/mac/Info.plist.in)
-  set(SHARED_HELPER_INFO_PLIST ../shared/mac/helper-Info.plist.in)
+  # Use absolute paths to avoid duplicate output errors with the Ninja generator.
+  set(SHARED_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/shared/mac/Info.plist.in)
+  set(SHARED_HELPER_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/shared/mac/helper-Info.plist.in)
 elseif(OS_WINDOWS)
   # Shared Windows resources (version information, icons).
   set(SHARED_RESOURCES_SRCS

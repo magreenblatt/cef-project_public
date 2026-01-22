@@ -113,7 +113,7 @@ if(OS_MAC)
   target_link_libraries(${EXAMPLE_TARGET} shared)
   set_target_properties(${EXAMPLE_TARGET} PROPERTIES
     RESOURCE "${EXAMPLE_RESOURCES_SRCS}"
-    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/${SHARED_INFO_PLIST}"
+    MACOSX_BUNDLE_INFO_PLIST "${SHARED_INFO_PLIST}"
     )
 
   # Copy the CEF framework into the Frameworks directory and create the necessary symlinks.
@@ -136,7 +136,7 @@ if(OS_MAC)
     # MACOSX_BUNDLE_INFO_PLIST) uses global env variables and would insert the
     # wrong values with multiple targets.
     set(_helper_info_plist "${CMAKE_CURRENT_BINARY_DIR}/helper-Info${_target_suffix}.plist.in")
-    file(READ "${CMAKE_CURRENT_SOURCE_DIR}/${SHARED_HELPER_INFO_PLIST}" _plist_contents)
+    file(READ "${SHARED_HELPER_INFO_PLIST}" _plist_contents)
     string(REPLACE "\${EXECUTABLE_NAME}" "${_helper_output_name}" _plist_contents ${_plist_contents})
     string(REPLACE "\${PRODUCT_NAME}" "${_helper_output_name}" _plist_contents ${_plist_contents})
     string(REPLACE "\${BUNDLE_ID_SUFFIX}" "${_plist_suffix}" _plist_contents ${_plist_contents})
