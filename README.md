@@ -15,7 +15,7 @@ First install some necessary tools and download the cef-project source code.
 2\. Install platform-specific build tools.
 
 * Linux: Currently supported distributions include Debian 10 (Buster), Ubuntu 18 (Bionic Beaver), and related, with minimum GCC version 7.5.0. Ubuntu 22.04 64-bit with GCC 11+ is recommended. Newer versions will likely also work but may not have been tested. Required packages include: build-essential, libgtk-3-dev.
-* MacOS: Xcode 12.2 to 15.0 building on MacOS 10.15.4 (Catalina) or newer. The Xcode command-line tools must also be installed.
+* MacOS: Xcode 13.5 to 16.4 building on MacOS 12.0 (Monterey) or newer. The Xcode command-line tools must also be installed. Newer Xcode versions may not have been tested and are not recommended.
 * Windows: Visual Studio 2022 building on Windows 10 or newer. Windows 10/11 64-bit is recommended.
 
 3\. Download the cef-project source code from the [Downloads page](https://bitbucket.org/chromiumembedded/cef-project/downloads) or by using [Git](https://git-scm.com/) command-line tools:
@@ -79,7 +79,7 @@ cmake -G "Visual Studio 17" -A arm64 ..
 CMake supports different generators on each platform. Run `cmake --help` to list all supported generators. Generators that have been tested with CEF include:
 
 * Linux: Ninja, GCC 7.5.0+, Unix Makefiles
-* MacOS: Ninja, Xcode 12.2 to 15.0
+* MacOS: Ninja, Xcode 13.5 to 16.4
 * Windows: Ninja, Visual Studio 2022+
 
 Ninja is a cross-platform open-source tool for running fast builds using pre-installed platform toolchains (GNU, clang, Xcode or MSVC). See comments in the "third_party/cef/cef_binary_*/CMakeLists.txt" file for Ninja usage instructions.
