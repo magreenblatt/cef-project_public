@@ -54,8 +54,8 @@ def exit_with_error(error):
 
 
 # Check if the CEF version number format is valid. The format is documented at
-# https://bitbucket.org/chromiumembedded/cef/wiki/BranchesAndBuilding.md#markdown-header-version-number-format
-# Code from https://bitbucket.org/chromiumembedded/cef/src/master/tools/cefbuilds/cef_json_builder.py
+# https://chromiumembedded.github.io/cef/branches_and_building#version-number-format
+# Code from https://github.com/chromiumembedded/cef/blob/master/tools/cefbuilds/cef_json_builder.py
 def is_valid_version(version):
   _chromium_version_regex = r'[1-9]{1}[0-9]{1,2}\.0\.[1-9]{1}[0-9]{2,4}\.(0|[1-9]{1}[0-9]{0,2})'
   _cef_hash_regex = r'g[0-9a-f]{7}'
